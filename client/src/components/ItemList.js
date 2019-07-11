@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Table, Button} from 'reactstrap';
+import {Container, ListGroup, ListGroupItem, Button} from 'reactstrap';
 import {connect} from 'react-redux';
 import { getItems } from '../actions/itemActions';
 import PropTypes from 'prop-types';
@@ -18,8 +18,16 @@ componentDidMount() {
             <Container>
                 <Button color="dark" style={{marginBottom:'2rem'}}>
                 Add Item</Button>
-
-               
+                <ListGroup>
+                    {items.map(({name}) => (
+                        <ListGroupItem>
+                            <Button className="remove-btn" color="danger" size="sm" style={{marginRight:'1rem'}}>
+                            &times;
+                             </Button>
+                             {name}
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
             </Container>
         )
     }
