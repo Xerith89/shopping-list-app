@@ -6,12 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const server = express();
 const items = require('./routes/api/items');
-
-//Use test DB if we're testing
-if (process.env.ENV != 'development')
-{
-  process.env.connection = process.env.test_connection;
-}
+const cors = require('cors');
 
 //Connect to MongoDB
 mongoose.connect(process.env.connection,{ useNewUrlParser: true })
@@ -20,6 +15,7 @@ mongoose.connect(process.env.connection,{ useNewUrlParser: true })
 
 //Helmet protects against HTTP vulnerabilities
 server.use(helmet());
+server.use(cors());
 
 //Redirect to our routes
 server.use(bodyParser.json());
