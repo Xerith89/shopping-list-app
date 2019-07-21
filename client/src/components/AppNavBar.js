@@ -33,5 +33,5 @@ class AppNavBar extends Component {
         </div>);
     }
 }
-
+export {Collapse};
 export default AppNavBar;
