@@ -1,11 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { create } from "react-test-renderer";
+import { render} from '@testing-library/react'
+import '@testing-library/react/cleanup-after-each';
 import AppNavBar from './../components/AppNavBar';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<AppNavBar />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const element = render(<AppNavBar />)
+  expect(element).toMatchSnapshot();
 });
-

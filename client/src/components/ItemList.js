@@ -5,7 +5,7 @@ import { getItems,deleteItems } from '../actions/itemActions';
 import PropTypes from 'prop-types';
 
 
-class ItemList extends Component {
+export class ItemList extends Component {
     
 componentDidMount() {
     this.props.getItems();
@@ -16,15 +16,13 @@ onDeleteClick = (id) => {
 }
 
     render () {
-        const {_id, items} = this.props.item;
-
+        const {items} = this.props.item;
+        if (!items) return null;
         return(
             <Container>
-                <Button color="dark" style={{marginBottom:'2rem'}}>
-                Add Item</Button>
-                <ListGroup>
+                <ListGroup >
                     {items.map(({_id, name}) => (
-                        <ListGroupItem>
+                        <ListGroupItem >
                             <Button className="remove-btn" color="danger" size="sm" style={{marginRight:'1rem'}}
                             onClick={this.onDeleteClick.bind(this,_id)}>
                             &times;
